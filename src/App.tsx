@@ -7,6 +7,6 @@ const store = configureStore();
 
 export const App: FC = () => (
   <Provider store={store}>
-    <div>TS will be here</div>
+    <div> TS will be here </div>
   </Provider>
 );
