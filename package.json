@@ -34,10 +34,11 @@
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^2.4.5",
     "node-sass": "^6.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
@@ -51,13 +52,14 @@
     "webpack": "^5.64.4",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.6.0"
+    "webpack-dev-server": "^4.6.0",
+    "webpack-merge": "^5.8.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --watch",
     "build": "cross-env NODE_ENV=production webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
-    "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer bundle/output/path/stats.json",
+    "stats": "cross-env NODE_ENV=production webpack --profile --json > stats.json && webpack-bundle-analyzer bundle/output/path/stats.json",
     "typescript": "tsc",
     "lint": "yarn typescript && yarn lint:ts",
     "lint:ts": "eslint src/* --ext .ts,.tsx",
@@ -67,5 +69,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "eslint --max-warnings=-1"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
