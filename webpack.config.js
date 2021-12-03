@@ -1,29 +1,10 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+
 const webpackConfigDev = require('./webpack/webpack.config.dev');
 const webpackConfigProd = require('./webpack/webpack.config.prod');
-
-const isDev = process.env.NODE_ENV === 'development';
-
-const cssLoaders = (extra) => {
-  const loader = [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-        reloadAll: true,
-      },
-    },
-    'css-loader',
-  ];
-
-  if (extra) {
-    loader.push(extra);
-  }
-
-  return loader;
-};
 
 const babelOptions = (preset) => {
   const opts = {
@@ -41,7 +22,7 @@ const webpackConfigCommon = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.tsx',
   output: {
-    filename: '[name].js',
+    filename: `[name].[hash].js`,
     path: path.resolve(__dirname, 'public'),
   },
   resolve: {
@@ -52,15 +33,29 @@ const webpackConfigCommon = {
       chunks: 'all',
     },
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+    }),
+    new MiniCssExtractPlugin({
+      filename: `[name].[hash].css`,
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: cssLoaders(),
-      },
-      {
         test: /\.s[ac]ss$/,
-        use: cssLoaders('sass-loader'),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+          },
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.js$/,

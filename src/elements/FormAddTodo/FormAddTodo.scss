@@ -1,0 +1,12 @@
+.form-add-todo {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 520px) {
+  .form-add-todo {
+    flex-direction: column;
+  }
+}

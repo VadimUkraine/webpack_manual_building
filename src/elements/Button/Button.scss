@@ -1,0 +1,37 @@
+.primary {
+  max-width: 10rem;
+  min-width: 5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  height: 29px;
+
+  &:hover {
+    background-color: blue;
+    color: white;
+  }
+}
+
+.reset {
+  max-width: 10rem;
+  min-width: 5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  height: 29px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
