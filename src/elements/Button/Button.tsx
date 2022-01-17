@@ -23,6 +23,6 @@ export const Button: FC<ButtonProps> = ({
     type={type}
     disabled={disabled}
   >
-    {customText ? customText : 'Click me'}
+    {customText || 'Click me'}
   </button>
 );
