@@ -20,17 +20,15 @@ export const TextInput: FC<InputTextProps> = ({
   inputClass = 'standart',
   placeholder,
   id,
-}: InputTextProps): ReactElement => {
-  return (
-    <input
-      id={id}
-      className={inputClass}
-      type="text"
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      disabled={disabled}
-      placeholder={placeholder}
-    />
-  );
-};
+}: InputTextProps): ReactElement => (
+  <input
+    id={id}
+    className={inputClass}
+    type="text"
+    value={value}
+    onChange={onChange}
+    onKeyDown={onKeyDown}
+    disabled={disabled}
+    placeholder={placeholder}
+  />
+);
