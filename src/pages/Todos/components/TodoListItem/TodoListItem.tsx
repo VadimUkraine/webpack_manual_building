@@ -10,17 +10,17 @@ import React, {
 import Button from '../../../../elements/Button';
 import EditTextInput from '../../../../elements/EditTextInput';
 import './TodoListItem.scss';
-import { ListItem } from '../../types';
+import { Todo } from '../../types';
 
 type ListItemProps = {
-  todo: ListItem;
+  todo: Todo;
   editID: string;
   textValue: string;
   handleChangeTextInput: (e: ChangeEvent<HTMLInputElement>) => void;
   handleKeyPressInput: (e: KeyboardEvent<HTMLInputElement>) => void;
   handleBlurInput: (e: FocusEvent<HTMLInputElement>) => void;
   deleteTodo: (id: string) => () => void;
-  setEditId: (todo: ListItem) => () => void;
+  setEditId: (todo: Todo) => () => void;
 };
 
 export const TodoListItem: FC<ListItemProps> = ({

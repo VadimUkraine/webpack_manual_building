@@ -3,30 +3,21 @@ import {
   TODOS_DELETE_ASYNC,
   TODOS_UPDATE_ASYNC,
   TODOS_CREATE_ASYNC,
-  ListItem,
+  Todos,
+  GET_TODOS_REQUEST,
+  GET_TODOS_SUCCESS,
+  GET_TODOS_FAILURE,
+  ErrorHttpAction,
 } from '../types';
 
 export type TodosState = {
-  data: ListItem[];
+  data: Todos;
   isFetching: boolean;
-  error: false;
+  error: false | ErrorHttpAction;
 };
 
 const initialState: TodosState = {
-  data: [
-    {
-      id: '123-sd',
-      text: 'lectrum forever',
-    },
-    {
-      id: 'dsfd-123-sd',
-      text: 'No, only you',
-    },
-    {
-      id: '123-sd-jfhsldf',
-      text: 'forever you',
-    },
-  ],
+  data: [],
   isFetching: false,
   error: false,
 };
@@ -36,6 +27,24 @@ export const todosReducer = (
   action: TodosActionTypes
 ): TodosState => {
   switch (action.type) {
+    case GET_TODOS_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+        isFetching: false,
+      };
+    case GET_TODOS_FAILURE:
+      return {
+        ...state,
+        data: [],
+        isFetching: false,
+        error: action.payload,
+      };
+    case GET_TODOS_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
     case TODOS_DELETE_ASYNC:
       return {
         ...state,
