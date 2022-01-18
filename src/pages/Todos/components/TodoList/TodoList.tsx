@@ -4,8 +4,8 @@ import { RootState } from '../../../../store/rootReducer';
 import TodoListItem from '../TodoListItem';
 import { Todo } from '../../types';
 import {
-  todosDeleteAsyncAction,
-  todosUpdateAsyncAction,
+  deleteTodoAsyncAction,
+  updateTodoAsyncAction,
 } from '../../redux/actions';
 import './TodoList.scss';
 
@@ -51,9 +51,9 @@ export const TodoList: React.FC = () => {
 
   const handleDelete = useCallback(
     (id: string) => () => {
-      dispatch(todosDeleteAsyncAction(id));
+      dispatch(deleteTodoAsyncAction(id));
     },
-    [dispatch, todosDeleteAsyncAction]
+    [dispatch, deleteTodoAsyncAction]
   );
 
   const handleKeyPressInput = useCallback(
@@ -66,7 +66,7 @@ export const TodoList: React.FC = () => {
 
       if (isUpdate) {
         dispatch(
-          todosUpdateAsyncAction({
+          updateTodoAsyncAction({
             id: editID,
             text: textValue,
           })
@@ -74,7 +74,7 @@ export const TodoList: React.FC = () => {
         handleBlurInput();
       }
     },
-    [dispatch, todosUpdateAsyncAction, textValue, editID, list]
+    [dispatch, updateTodoAsyncAction, textValue, editID]
   );
 
   return (

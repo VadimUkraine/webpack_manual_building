@@ -2,7 +2,7 @@ import React, { useState, FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../../../../elements/Button';
 import TextInput from '../../../../elements/TextInput';
-import { todosCreateAsyncAction } from '../../redux/actions';
+import { createTodoAsyncAction } from '../../redux/actions';
 import './FormAddTodo.scss';
 
 export const FormAddTodo: FC = () => {
@@ -24,7 +24,7 @@ export const FormAddTodo: FC = () => {
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter' && textValue.length) {
         dispatch(
-          todosCreateAsyncAction({
+          createTodoAsyncAction({
             text: textValue,
             id: `${textValue}${Math.random()}`,
           })
@@ -32,20 +32,20 @@ export const FormAddTodo: FC = () => {
         setTextValue('');
       }
     },
-    [setTextValue, textValue, dispatch, todosCreateAsyncAction]
+    [setTextValue, textValue, dispatch, createTodoAsyncAction]
   );
 
   const handleAddTodo = useCallback(() => {
     if (textValue.length) {
       dispatch(
-        todosCreateAsyncAction({
+        createTodoAsyncAction({
           text: textValue,
           id: `${textValue}${Math.random()}`,
         })
       );
     }
     setTextValue('');
-  }, [setTextValue, textValue, dispatch, todosCreateAsyncAction]);
+  }, [setTextValue, textValue, dispatch, createTodoAsyncAction]);
 
   return (
     <form
