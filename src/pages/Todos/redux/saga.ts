@@ -45,8 +45,7 @@ function* getTodosSagaAsync(): SagaIterator {
 
     yield put(getTodosSuccessAction(list));
   } catch (err) {
-    console.warn(err);
-    yield put(getTodosFailureAction(err.message));
+    yield put(getTodosFailureAction((err as Error).message));
   }
 }
 
@@ -61,8 +60,7 @@ function* deleteTodoSagaAsync(action: DeleteTodoAsyncAction): SagaIterator {
       deleteTodoSuccessAction(list.filter((item: Todo) => item.id !== id))
     );
   } catch (err) {
-    console.warn(err);
-    yield put(deleteTodoFailureAction(err.message));
+    yield put(deleteTodoFailureAction((err as Error).message));
   }
 }
 
@@ -72,13 +70,12 @@ function* updateTodoSagaAsync(action: UpdateTodoAsyncAction): SagaIterator {
 
     const { id, text } = action.payload;
     const list = yield select(getTodos);
-    const index = list.findIndex((el) => el.id === id);
+    const index = list.findIndex((el: Todo) => el.id === id);
     list[index].text = text;
 
     yield put(updateTodoSuccessAction(list));
   } catch (err) {
-    console.warn(err);
-    yield put(updateTodoFailureAction(err.message));
+    yield put(updateTodoFailureAction((err as Error).message));
   }
 }
 
@@ -91,8 +88,7 @@ function* createTodoSagaAsync(action: CreateTodoAsyncAction): SagaIterator {
 
     yield put(createTodoSuccessAction(newList));
   } catch (err) {
-    console.warn(err);
-    yield put(createTodoFailureAction(err.message));
+    yield put(createTodoFailureAction((err as Error).message));
   }
 }
 

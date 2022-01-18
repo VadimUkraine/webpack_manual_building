@@ -8,23 +8,22 @@ import React, {
 } from 'react';
 import './EditTextInput.scss';
 
-type EditInputTextProps = {
+export type EditInputTextProps = {
   inputClass?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
   onBlur: (e: FocusEvent<HTMLInputElement>) => void;
-  children?: never;
   value: string;
-  id?: string;
+  id: string;
   refInput: MutableRefObject<HTMLInputElement>;
 };
 
 export const EditTextInput: FC<EditInputTextProps> = ({
-  value = '',
+  value,
   onChange,
   onKeyPress,
   onBlur,
-  inputClass = 'edit-standart',
+  inputClass,
   id,
   refInput,
 }: EditInputTextProps): ReactElement => (

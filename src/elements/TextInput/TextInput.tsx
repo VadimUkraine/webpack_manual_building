@@ -1,12 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import './TextInput.scss';
 
-type InputTextProps = {
+export type InputTextProps = {
   inputClass?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  children?: never;
   placeholder?: string;
   value: string;
   id?: string;

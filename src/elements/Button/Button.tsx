@@ -1,28 +1,18 @@
 import React, { FC, ReactElement } from 'react';
 import './Button.scss';
 
-type ButtonProps = {
-  type: 'button' | 'submit' | 'reset' | undefined;
+export type ButtonProps = {
   customText?: string;
   buttonClass: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  children?: never;
+  onClick: () => void;
 };
 
 export const Button: FC<ButtonProps> = ({
-  type = 'button',
-  customText,
+  customText = 'Click me',
   buttonClass,
   onClick,
-  disabled,
 }: ButtonProps): ReactElement => (
-  <button
-    className={buttonClass}
-    onClick={onClick}
-    type={type}
-    disabled={disabled}
-  >
-    {customText || 'Click me'}
+  <button className={buttonClass} onClick={onClick} type="button">
+    {customText}
   </button>
 );
