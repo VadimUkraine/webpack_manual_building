@@ -1,13 +1,19 @@
 import {
   TodosActionTypes,
-  TODOS_DELETE_ASYNC,
-  TODOS_UPDATE_ASYNC,
-  TODOS_CREATE_ASYNC,
   Todos,
   GET_TODOS_REQUEST,
   GET_TODOS_SUCCESS,
   GET_TODOS_FAILURE,
   ErrorHttpAction,
+  DELETE_TODO_REQUEST,
+  DELETE_TODO_SUCCESS,
+  DELETE_TODO_FAILURE,
+  UPDATE_TODO_REQUEST,
+  UPDATE_TODO_SUCCESS,
+  UPDATE_TODO_FAILURE,
+  CREATE_TODO_REQUEST,
+  CREATE_TODO_SUCCESS,
+  CREATE_TODO_FAILURE,
 } from '../types';
 
 export type TodosState = {
@@ -28,43 +34,32 @@ export const todosReducer = (
 ): TodosState => {
   switch (action.type) {
     case GET_TODOS_SUCCESS:
+    case DELETE_TODO_SUCCESS:
+    case UPDATE_TODO_SUCCESS:
+    case CREATE_TODO_SUCCESS:
       return {
         ...state,
         data: action.payload,
         isFetching: false,
       };
     case GET_TODOS_FAILURE:
+    case DELETE_TODO_FAILURE:
+    case UPDATE_TODO_FAILURE:
+    case CREATE_TODO_FAILURE:
       return {
         ...state,
-        data: [],
         isFetching: false,
         error: action.payload,
       };
     case GET_TODOS_REQUEST:
+    case DELETE_TODO_REQUEST:
+    case UPDATE_TODO_REQUEST:
+    case CREATE_TODO_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case TODOS_DELETE_ASYNC:
-      return {
-        ...state,
-        data: state.data.filter((item) => item.id !== action.payload.id),
-      };
-    case TODOS_UPDATE_ASYNC:
-      const { id, text } = action.payload.todo;
-      const index = state.data.findIndex((el) => el.id === id);
-      const newData = state.data;
-      newData[index].text = text;
 
-      return {
-        ...state,
-        data: newData,
-      };
-    case TODOS_CREATE_ASYNC:
-      return {
-        ...state,
-        data: [...state.data, action.payload.todo],
-      };
     default:
       return state;
   }
