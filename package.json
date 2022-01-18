@@ -64,7 +64,8 @@
     "lint": "yarn typescript && yarn lint:ts",
     "lint:ts": "eslint src/* --ext .ts,.tsx",
     "eslint": "eslint src/*",
-    "eslint:fix": "eslint src/* --fix"
+    "eslint:fix": "eslint src/* --fix",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@redux-saga/core": "^1.1.3",
