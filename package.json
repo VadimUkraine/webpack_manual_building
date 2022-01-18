@@ -77,10 +77,12 @@
     "redux-saga": "^1.1.3"
   },
   "lint-staged": {
-    "*.{ts,tsx,js}": [
+    "src/*.{ts,tsx,js}": [
       "eslint . --fix",
       "git add"
     ]
+
+
   },
   "husky": {
     "hooks": {
