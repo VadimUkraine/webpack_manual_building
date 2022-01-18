@@ -22,7 +22,7 @@ const webpackConfigCommon = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.tsx',
   output: {
-    filename: `[name].[hash].js`,
+    filename: `[name].[contenthash].js`,
     path: path.resolve(__dirname, 'public'),
   },
   resolve: {
@@ -41,21 +41,14 @@ const webpackConfigCommon = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: `[name].[hash].css`,
+      filename: `[name].css`,
     }),
   ],
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
-          },
-          'css-loader',
-          'sass-loader',
-        ],
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.js$/,

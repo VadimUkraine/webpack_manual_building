@@ -51,13 +51,11 @@ export const TodoListItem: FC<ListItemProps> = ({
           <span className="todo-list__item-buttons-wrap">
             <Button
               customText="Edit"
-              type="button"
               buttonClass="todo-list__item-button-edit"
               onClick={setEditId(todo)}
             />
             <Button
               customText="Delete"
-              type="button"
               buttonClass="todo-list__item-button-delete"
               onClick={deleteTodo(todo.id)}
             />

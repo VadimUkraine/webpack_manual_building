@@ -9,6 +9,7 @@
     }
   },
   "rules": {
+    "default-param-last": 0,
     "react/jsx-filename-extension": [
       2,
       {

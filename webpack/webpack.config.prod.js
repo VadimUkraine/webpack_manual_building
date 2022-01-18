@@ -14,7 +14,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
-      filename: `[name].[hash].css`,
+      filename: `[name].[contenthash].css`,
     }),
   ],
 };

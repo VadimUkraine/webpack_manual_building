@@ -62,7 +62,6 @@ export const FormAddTodo: FC = () => {
       />
       <Button
         customText="Add Todo"
-        type="button"
         buttonClass="primary"
         onClick={handleAddTodo}
       />
