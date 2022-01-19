@@ -23,7 +23,7 @@ export const EditTextInput: FC<EditInputTextProps> = ({
   onChange,
   onKeyPress,
   onBlur,
-  inputClass,
+  inputClass = 'edit-standart',
   id,
   refInput,
 }: EditInputTextProps): ReactElement => (
