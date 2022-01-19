@@ -11,7 +11,6 @@ export const FormAddTodo: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('qwe', errorwe);
   };
 
   const handleChangeTextInput = useCallback(
