@@ -10,7 +10,7 @@ export const FormAddTodo: FC = () => {
   const [textValue, setTextValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault() qweqwe;
+    e.preventDefault() error here;
   };
 
   const handleChangeTextInput = useCallback(
