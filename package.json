@@ -77,6 +77,6 @@
     "redux-saga": "^1.1.3"
   },
   "lint-staged": {
-    "*.{scss,css}": "prettier --write"
+    "*.{scss,css}": "prettier --write --ignore-unknown"
   }
 }
