@@ -40,7 +40,6 @@
     "eslint-plugin-react": "^7.27.1",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^2.4.5",
     "node-sass": "^6.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
@@ -65,7 +64,7 @@
     "lint:ts": "eslint src/* --ext .ts,.tsx",
     "eslint": "eslint src/*",
     "eslint:fix": "eslint src/* --fix",
-    "pre-commit": "lint-staged"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@redux-saga/core": "^1.1.3",
@@ -75,16 +74,5 @@
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-saga": "^1.1.3"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js}": [
-      "eslint 'src/**' --fix",
-      "yarn lint"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
