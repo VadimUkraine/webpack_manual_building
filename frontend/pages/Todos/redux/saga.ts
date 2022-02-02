@@ -1,9 +1,8 @@
-import { select, delay, put, takeLatest } from 'redux-saga/effects';
+import { delay, put, takeLatest, call } from 'redux-saga/effects';
 import { SagaIterator } from '@redux-saga/core';
 import {
   GET_TODOS_REQUEST,
   DELETE_TODO_REQUEST,
-  Todo,
   DeleteTodoAsyncAction,
   UPDATE_TODO_REQUEST,
   UpdateTodoAsyncAction,
@@ -22,26 +21,13 @@ import {
   createTodoFailureAction,
 } from './actions';
 
-import { getTodos } from './selectors';
+import TodoService from './service';
 
 function* getTodosSagaAsync(): SagaIterator {
   try {
-    yield delay(1000);
+    yield delay(500);
 
-    const list = [
-      {
-        id: '123-sd',
-        text: 'lectrum forever',
-      },
-      {
-        id: 'dsfd-123-sd',
-        text: 'No, only you',
-      },
-      {
-        id: '123-sd-jfhsldf',
-        text: 'forever you',
-      },
-    ];
+    const list = yield call(TodoService.getAllTodos);
 
     yield put(getTodosSuccessAction(list));
   } catch (err) {
@@ -51,14 +37,11 @@ function* getTodosSagaAsync(): SagaIterator {
 
 function* deleteTodoSagaAsync(action: DeleteTodoAsyncAction): SagaIterator {
   try {
-    yield delay(1000);
+    yield delay(500);
 
-    const { id } = action.payload;
-    const list = yield select(getTodos);
+    const list = yield call(TodoService.deleteTodoById, action.payload.id);
 
-    yield put(
-      deleteTodoSuccessAction(list.filter((item: Todo) => item.id !== id))
-    );
+    yield put(deleteTodoSuccessAction(list));
   } catch (err) {
     yield put(deleteTodoFailureAction((err as Error).message));
   }
@@ -66,12 +49,9 @@ function* deleteTodoSagaAsync(action: DeleteTodoAsyncAction): SagaIterator {
 
 function* updateTodoSagaAsync(action: UpdateTodoAsyncAction): SagaIterator {
   try {
-    yield delay(1000);
+    yield delay(500);
 
-    const { id, text } = action.payload;
-    const list = yield select(getTodos);
-    const index = list.findIndex((el: Todo) => el.id === id);
-    list[index].text = text;
+    const list = yield call(TodoService.updateTodoById, action.payload);
 
     yield put(updateTodoSuccessAction(list));
   } catch (err) {
@@ -81,12 +61,11 @@ function* updateTodoSagaAsync(action: UpdateTodoAsyncAction): SagaIterator {
 
 function* createTodoSagaAsync(action: CreateTodoAsyncAction): SagaIterator {
   try {
-    yield delay(1000);
+    yield delay(500);
 
-    const list = yield select(getTodos);
-    const newList = [...list, action.payload];
+    const list = yield call(TodoService.createTodo, action.payload);
 
-    yield put(createTodoSuccessAction(newList));
+    yield put(createTodoSuccessAction(list));
   } catch (err) {
     yield put(createTodoFailureAction((err as Error).message));
   }

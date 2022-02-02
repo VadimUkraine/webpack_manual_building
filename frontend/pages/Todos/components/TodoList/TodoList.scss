@@ -2,6 +2,12 @@
   padding: 0;
   margin: 0 auto;
   max-width: 550px;
+
+  &__no-data {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
 }
 
 .loading-data {

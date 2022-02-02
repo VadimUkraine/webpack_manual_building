@@ -6,6 +6,10 @@
   align-items: center;
   height: 30px;
   margin-bottom: 7px;
+
+  &-disabled {
+    color: grey;
+  }
 }
 
 .todo-list__item-buttons-wrap {
@@ -25,11 +29,25 @@
   &:hover {
     color: blue;
   }
+
+  &-disabled {
+    color: grey;
+    &:hover {
+      color: grey;
+    }
+  }
 }
 
 .todo-list__item-button-delete {
   &:hover {
     color: red;
+  }
+
+  &-disabled {
+    color: grey;
+    &:hover {
+      color: grey;
+    }
   }
 }
 

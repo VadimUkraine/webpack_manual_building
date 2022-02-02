@@ -14,7 +14,7 @@ export type InputTextProps = {
 export const TextInput: FC<InputTextProps> = ({
   value = '',
   onChange,
-  disabled,
+  disabled = false,
   onKeyDown,
   inputClass = 'standart',
   placeholder,

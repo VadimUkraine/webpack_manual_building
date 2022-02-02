@@ -6,6 +6,7 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   FocusEvent,
+  useMemo,
 } from 'react';
 import Button from '../../../../elements/Button';
 import EditTextInput from '../../../../elements/EditTextInput';
@@ -21,6 +22,7 @@ type ListItemProps = {
   handleBlurInput: (e: FocusEvent<HTMLInputElement>) => void;
   deleteTodo: (id: string) => () => void;
   setEditId: (todo: Todo) => () => void;
+  isFetching: boolean;
 };
 
 export const TodoListItem: FC<ListItemProps> = ({
@@ -32,6 +34,7 @@ export const TodoListItem: FC<ListItemProps> = ({
   deleteTodo,
   setEditId,
   textValue,
+  isFetching,
 }: ListItemProps) => {
   const refInput = useRef() as MutableRefObject<HTMLInputElement>;
 
@@ -41,8 +44,32 @@ export const TodoListItem: FC<ListItemProps> = ({
     }
   }, [editID, todo]);
 
+  const listItemClasses = useMemo(() => {
+    if (isFetching) {
+      return 'todo-list__item todo-list__item-disabled';
+    }
+
+    return 'todo-list__item';
+  }, [isFetching]);
+
+  const deleteButtonClasses = useMemo(() => {
+    if (isFetching) {
+      return 'todo-list__item-button-delete todo-list__item-button-delete-disabled';
+    }
+
+    return 'todo-list__item-button-delete';
+  }, [isFetching]);
+
+  const editButtonClasses = useMemo(() => {
+    if (isFetching) {
+      return 'todo-list__item-button-edit todo-list__item-button-edit-disabled';
+    }
+
+    return 'todo-list__item-button-edit';
+  }, [isFetching]);
+
   return (
-    <li className="todo-list__item">
+    <li className={listItemClasses}>
       {editID !== todo.id && (
         <>
           <p className="todo-list__item-content" title={todo.text}>
@@ -51,13 +78,15 @@ export const TodoListItem: FC<ListItemProps> = ({
           <span className="todo-list__item-buttons-wrap">
             <Button
               customText="Edit"
-              buttonClass="todo-list__item-button-edit"
+              buttonClass={editButtonClasses}
               onClick={setEditId(todo)}
+              disabled={isFetching}
             />
             <Button
               customText="Delete"
-              buttonClass="todo-list__item-button-delete"
+              buttonClass={deleteButtonClasses}
               onClick={deleteTodo(todo.id)}
+              disabled={isFetching}
             />
           </span>
         </>
