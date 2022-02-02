@@ -22,7 +22,7 @@ export const FormAddTodo: FC = () => {
 
   const handleKeyDownTextInput = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter' && textValue.length) {
+      if (e.key === 'Enter' && textValue.trim().length) {
         dispatch(
           createTodoAsyncAction({
             text: textValue,
@@ -36,7 +36,7 @@ export const FormAddTodo: FC = () => {
   );
 
   const handleAddTodo = useCallback(() => {
-    if (textValue.length) {
+    if (textValue.trim().length) {
       dispatch(
         createTodoAsyncAction({
           text: textValue,

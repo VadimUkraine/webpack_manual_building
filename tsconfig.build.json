@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./server",
+    "baseUrl": "./backend",
+    "incremental": true,
+    "skipLibCheck": true
+  },
+  "include": ["backend"],
+  "exclude": ["frontend", "node_models", "public", "server"]
+}

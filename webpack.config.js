@@ -19,8 +19,8 @@ const babelOptions = (preset) => {
 };
 
 const webpackConfigCommon = {
-  context: path.resolve(__dirname, 'src'),
-  entry: './index.tsx',
+  context: path.resolve(__dirname, 'frontend'),
+  entry: ['babel-polyfill', './index.tsx'],
   output: {
     filename: `[name].[contenthash].js`,
     path: path.resolve(__dirname, 'public'),

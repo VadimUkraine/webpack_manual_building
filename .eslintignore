@@ -1,5 +1,6 @@
-src/index.html
+frontend/index.html
 webpack.config.js
 webpack
 /node_modules
 /public
+/server

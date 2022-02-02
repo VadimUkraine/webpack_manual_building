@@ -61,7 +61,7 @@ export const TodoList: React.FC = () => {
       const editTodo = list.find((el) => el.id === editID);
       const isUpdate =
         e.key === 'Enter' &&
-        textValue.length &&
+        textValue.trim().length &&
         textValue !== (editTodo as Todo).text;
 
       if (isUpdate) {
@@ -80,6 +80,9 @@ export const TodoList: React.FC = () => {
   return (
     <>
       <div className="loading-data">{loadingText}</div>
+      {!list.length && (
+        <p className="todo-list__no-data">Please add todo item</p>
+      )}
       <ul className="todo-list">
         {list &&
           list.map((todo: Todo) => (
@@ -93,6 +96,7 @@ export const TodoList: React.FC = () => {
               handleKeyPressInput={handleKeyPressInput}
               handleBlurInput={handleBlurInput}
               textValue={textValue}
+              isFetching={isFetching}
             />
           ))}
       </ul>
