@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    volumes: ./backend/src
+    command: yarn server:dev
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:4200"
+    volumes: ./client/src
+    links:
+      - "backend"
+    command: yarn dev

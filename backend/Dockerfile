@@ -4,12 +4,12 @@ WORKDIR /nest
 
 COPY package.json ./
 
-RUN yarn add
+RUN yarn install
 
 COPY . .
 
 COPY ./server ./server
 
-VOLUME ["/nest/backend", "/nest/frontend",]
+VOLUME ["/nest/backend"]
 
-CMD ["yarn", "start:dev"]
+CMD ["yarn", "server:dev"]
