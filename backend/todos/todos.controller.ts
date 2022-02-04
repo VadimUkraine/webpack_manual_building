@@ -18,7 +18,7 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Delete()
-  deleteTodo(@Body('id') id: string): Promise<Todo[]> {
+  async removeTodo(@Body('id') id: string): Promise<Todo[]> {
     const updatedTodos = this.todosService.removeTodoById(id);
     if (!updatedTodos) {
       throw new HttpException(TODO_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -28,17 +28,17 @@ export class TodosController {
   }
 
   @Put()
-  updateTodo(@Body() dto: UpdateTodoDto): Promise<Todo[]> {
-    return this.todosService.updateTodoById(dto);
+  async updateTodo(@Body() updateTodoDto: UpdateTodoDto): Promise<Todo[]> {
+    return this.todosService.updateTodoById(updateTodoDto);
   }
 
   @Post()
-  createTodo(@Body('text') text: string): Promise<Todo[]> {
+  async createTodo(@Body('text') text: string): Promise<Todo[]> {
     return this.todosService.createTodo(text);
   }
 
   @Get()
-  getAllTodos(): Promise<Todo[]> {
+  async getAllTodos(): Promise<Todo[]> {
     return this.todosService.getAllTodos();
   }
 }
