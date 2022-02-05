@@ -9,10 +9,10 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./server",
-    "baseUrl": "./backend",
+    "baseUrl": "./src",
     "incremental": true,
     "skipLibCheck": true
   },
-  "include": ["backend"],
-  "exclude": ["frontend", "node_models", "public", "server"]
+  "include": ["src"],
+  "exclude": ["node_models", "server"]
 }

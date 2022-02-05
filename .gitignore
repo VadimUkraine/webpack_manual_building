@@ -6,3 +6,13 @@ stats.json
 yarn-error.log
 yarn.lock
 /server
+client/node_modules
+backend/node_modules
+backend/server
+client/coverage
+client/public
+client/stats.json
+client/yarn-error.log
+client/yarn.lock
+backend/yarn-error.log
+backend/yarn.lock
