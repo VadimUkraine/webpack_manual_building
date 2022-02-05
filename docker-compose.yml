@@ -1,4 +1,4 @@
-version: "3"
+version: "3.3"
 
 services:
   backend:
@@ -7,15 +7,20 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
-    volumes: ./backend/src
+    volumes:
+      - ./backend:/nest/
+      - /nest/node_modules
     command: yarn server:dev
   frontend:
     build:
       context: ./client
       dockerfile: ./Dockerfile
+    image: front
     ports:
       - "4200:4200"
-    volumes: ./client/src
+    volumes:
+      - ./client:/react/
+      - /react/node_modules
     links:
       - "backend"
     command: yarn dev

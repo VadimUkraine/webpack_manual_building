@@ -8,8 +8,4 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 4200
-
-VOLUME ["/react/client"]
-
 CMD ["yarn", "dev"]

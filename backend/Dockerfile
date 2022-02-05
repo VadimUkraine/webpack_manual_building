@@ -8,8 +8,4 @@ RUN yarn install
 
 COPY . .
 
-COPY ./server ./server
-
-VOLUME ["/nest/backend"]
-
 CMD ["yarn", "server:dev"]
