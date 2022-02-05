@@ -8,12 +8,12 @@ Docker Compose was used to develop and run the application.
 
 
 
-#### Build web image via docker-compose:
+#### Build images via docker-compose:
 ```
 docker-compose build
 ```
 
-#### Start web image via docker-compose:
+#### Start images via docker-compose:
 ```
 docker-compose up -d
 ```
