@@ -1,5 +1,5 @@
 <details>
-<summary>Branch description</summary>
+<summary>Repository description</summary>
 This repository implements a TODO list.
 The frontend is implemented on a custom build of Webpack with Typescript & React & Redux & Redux-Saga.
 The backend is implemented in NodeJS with framework NestJS and Typescript.
